@@ -17,8 +17,9 @@ connections.on("connected" ,()=>{
 
 })
 
-    }catch(err){
-console.log(err.message);
+    }catch(err:unknown){
+        const errMsg=err instanceof Error? err.message : String(err)
+console.log(errMsg);
 throw new Error("problem in connected to db")
     }
 }

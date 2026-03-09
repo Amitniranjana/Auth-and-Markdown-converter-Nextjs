@@ -1,6 +1,4 @@
-
-import
-
+import MarkdownPage from "@/markdown"
 # Welcome to my MDX page!
 
 This is some **bold** and _italics_ text.
@@ -12,3 +10,4 @@ This is a list in markdown:
 - Three
 
 Checkout my React component:
+<MarkdownPage/>

@@ -1,11 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 
 
-const Page = () => {
+const MarkdownPage = () => {
   const [markdown, setMarkdown] = useState("# Heading\nStart typing...");
-
 
 
 
@@ -26,11 +24,11 @@ const Page = () => {
       <div className='w-1/2 h-screen bg-white p-6 overflow-y-auto'>
         <div className='prose prose-slate max-w-none text-slate-700'>
           {/* text-slate-700 changes the color of the rendered HTML text */}
-          <ReactMarkdown>{markdown}</ReactMarkdown>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default MarkdownPage;

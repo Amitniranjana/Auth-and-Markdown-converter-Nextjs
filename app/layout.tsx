@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MarkdownProvider from '@/app/context/MarkdownContext'
+import { getUser } from './lib/user'
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,10 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+   const markdownPromise = getUser()
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+         <MarkdownProvider >{children}</MarkdownProvider>
+
       </body>
     </html>
   );

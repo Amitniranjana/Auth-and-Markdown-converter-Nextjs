@@ -4,10 +4,14 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@/app/context/UserContext'
+
 
 
 
 const LoginPage = () => {
+  const { setInfo } = useUser();
+
    const router = useRouter()
   // 1. Sirf 2 fields ki state banayi
   const [user, setUser] = useState({
@@ -26,6 +30,7 @@ const LoginPage = () => {
     event.preventDefault();
     console.log("Login ke liye data bheja:", user);
 
+
     try {
       // API call to login route
       const res = await axios.post('/api/login', user);
@@ -34,7 +39,9 @@ const LoginPage = () => {
         alert("Login Successful! 🎉");
         // Login hone ke baad form clear kar diya (ya aap user ko dashboard par redirect kar sakte hain)
         router.push('/dashboard');
+        setInfo(res.data.user)
         setUser({ email: '', password: '' });
+
       }
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {

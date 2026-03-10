@@ -44,7 +44,17 @@ export async function POST(request: NextRequest) {
 
         // 6. Correct Cookie syntax with secure defaults
            const response= NextResponse.json(
-            { message: "Signed in successfully", status: true },
+            { 
+                message: "Signed in successfully", 
+                status: true,
+                user: {
+                    username: user.username,
+                    email: user.email,
+                    phone: user.phone,
+                    city: user.city,
+                    pincode: user.pincode
+                }
+            },
             { status: 200 }
         );
 

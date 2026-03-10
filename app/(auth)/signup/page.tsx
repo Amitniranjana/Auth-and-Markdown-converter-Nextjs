@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
+import { useUser } from '@/app/context/UserContext'
+
 
 const SignupPage = () => {
   // Initial state ko ek variable mein rakh liya taaki reset karne mein aasaani ho
@@ -16,7 +18,7 @@ const SignupPage = () => {
   };
 
   const [user, setUser] = useState(initialState)
-
+  const { setInfo } = useUser();
   const handleChange = (event: any) => {
     const { name, value } = event?.target;
     setUser({ ...user, [name]: value })
@@ -26,6 +28,8 @@ const SignupPage = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     console.log("Form Submitted:", user);
+
+
 
     try {
       // 2. axios.post likha (lowercase) aur await lagaya
@@ -38,6 +42,7 @@ const SignupPage = () => {
         alert("sign up successfully")
         // 4. State ko wapas uski initial empty values par set kiya
         setUser(initialState);
+        setInfo(user);
       } else {
         console.log("Problem in backend res in signup");
       }

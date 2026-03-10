@@ -2,15 +2,18 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
+import { useUser } from '../context/UserContext'
 
 const Page = () => {
   // State ko null se initialize karna better hai agar object aane wala ho
   const [weatherData, setWeatherData] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const[city ,setCity]=useState('')
+  const { info } = useUser();
 
   const handler = async () => {
     setLoading(true)
+
     try {
       // Axios call ke aage await lagana zaroori hai
       // Agar backend ko city chahiye, toh wo 2nd parameter me bhej sakte hain
@@ -31,6 +34,7 @@ const Page = () => {
     // h-100vh ki jagah h-screen use kiya hai
     <div className='flex flex-col justify-center items-center h-screen gap-6'>
 <input value={city} onChange={(event)=>setCity(event.target.value)} type="text" />
+<h1>hi {info?.username}</h1>
       <Button
         onClick={handler}
         variant={"destructive"}
